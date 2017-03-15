@@ -1045,7 +1045,7 @@ BROKER_URL = os.environ.get('BROKER_URL',
                             'amqp://olympia:olympia@localhost:5672/olympia')
 BROKER_CONNECTION_TIMEOUT = 0.1
 BROKER_HEARTBEAT = 60 * 15
-CELERY_DEFAULT_QUEUE = 'default'
+CELERY_DEFAULT_QUEUE = 'celery'
 CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND',
                                        'redis://localhost:6379/1')
 
@@ -1120,9 +1120,6 @@ CELERY_ROUTES = {
     'olympia.addons.tasks.update_incompatible_appversions': {
         'queue': 'addons'},
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
-
-    # Files (goes to devhub queue).
-    'olympia.files.tasks.update_webext_descriptions_all': {'queue': 'devhub'},
 
     # API
     'olympia.api.tasks.process_results': {'queue': 'api'},
